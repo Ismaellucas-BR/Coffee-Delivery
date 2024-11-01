@@ -1,9 +1,5 @@
 module.exports = {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,jsx,ts,tsx}",
-    "./global.css", // Caminho do novo arquivo global CSS
-  ],
+  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}", "./global.css"],
   theme: {
     extend: {},
     colors: {
@@ -11,7 +7,7 @@ module.exports = {
       "yellow-light": "#F1E9C9",
       yellow: "#DBAC2C",
       "purple-dark": "#4B2995",
-      "purple-light": "#EBE5F9", // Corrigido com #
+      "purple-light": "#EBE5F9",
       purple: "#8047F8",
       "base-title": "#272221",
       "base-text": "#574F4D",
@@ -21,6 +17,7 @@ module.exports = {
       "base-input": "#EDEDED",
       "base-card": "#F3F2F2",
       background: "#FAFAFA",
+      "base-white": "#FFFFFF",
     },
     fontFamily: {
       Roboto: ["Roboto", "sans-serif"],

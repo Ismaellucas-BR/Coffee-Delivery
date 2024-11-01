@@ -1,7 +1,13 @@
-import React from "react";
+import FirstSection from "./components/FirstSection";
+import SecondSection from "./components/SecondSection";
 
 function Home() {
-  return <div>Home</div>;
+  return (
+    <main>
+      <FirstSection />
+      <SecondSection />
+    </main>
+  );
 }
 
 export default Home;
