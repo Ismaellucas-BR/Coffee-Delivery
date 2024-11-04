@@ -3,9 +3,9 @@ import CoffeImage from "/assets/Imagem.png";
 
 function FirstSection() {
   return (
-    <section className="flexDirectionUniversal w-full gap-5 ">
+    <section className="flexDirectionUniversal w-full gap-5 lg:flex-row justify-start pt-10">
       <div className="flexDirectionUniversal gap-4">
-        <div className="flexDirectionUniversal">
+        <div className="flexDirectionUniversal w-full">
           <h1 className="font-baloo text-base-title text-3xl font-bold lg:text-5xl">
             Encontre o café perfeito <br /> para qualquer hora do dia
           </h1>
@@ -62,7 +62,7 @@ function FirstSection() {
         </div>
       </div>
 
-      <div>
+      <div className="w-4/5">
         <img src={CoffeImage} alt="Imagem de copo de café" />
       </div>
     </section>
