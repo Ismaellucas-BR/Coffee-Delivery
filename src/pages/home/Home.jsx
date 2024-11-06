@@ -3,7 +3,7 @@ import SecondSection from "./components/SecondSection";
 
 function Home() {
   return (
-    <main>
+    <main className="flex flex-col gap-20">
       <FirstSection />
       <SecondSection />
     </main>

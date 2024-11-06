@@ -8,18 +8,22 @@ function CoffeCard({ coffe }) {
   function IncriseQuantity() {
     setQuantityOfProduct((prevQuantity) => {
       const newQuantity = prevQuantity + 1;
-      setTotalValue(Number(coffe.price * newQuantity).toFixed(2));
+      setTotalValue((Number(coffe.price) * newQuantity).toFixed(2));
       return newQuantity;
     });
-    setTotalValue(coffe.price * QuantityOfProduct);
   }
+
   function DecreaseQuantity() {
     setQuantityOfProduct((prevQuantity) => {
-      const newQuantity = prevQuantity - 1;
-      setTotalValue(Number(coffe.price * newQuantity).toFixed(2));
-      return newQuantity;
+      if (prevQuantity > 1) {
+        const newQuantity = prevQuantity - 1;
+        setTotalValue((Number(coffe.price) * newQuantity).toFixed(2));
+        return newQuantity;
+      }
+      return prevQuantity;
     });
   }
+
   return (
     <div
       key={coffe.name}

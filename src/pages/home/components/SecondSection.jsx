@@ -8,7 +8,7 @@ function SecondSection() {
         Nossos cafés
       </h2>
       <div className="flex flex-col justify-center items-center">
-        <div className="flex flex-col gap-16 lg:grid lg:grid-cols-4 lg:gap-4">
+        <div className="flex flex-col gap-16 lg:grid lg:grid-cols-4 lg:gap-y-14 lg:gap-x-10">
           <CoffeList />
         </div>
       </div>

@@ -4,7 +4,7 @@ import CoffeImage from "/assets/Imagem.png";
 function FirstSection() {
   return (
     <section className="flexDirectionUniversal w-full gap-5 lg:flex-row justify-start pt-10">
-      <div className="flexDirectionUniversal gap-4">
+      <div className="flexDirectionUniversal gap-4 lg:w-1/2">
         <div className="flexDirectionUniversal w-full">
           <h1 className="font-baloo text-base-title text-3xl font-bold lg:text-5xl">
             Encontre o café perfeito <br /> para qualquer hora do dia
@@ -14,32 +14,30 @@ function FirstSection() {
             hora
           </h2>
         </div>
-        <div className="flexDirectionUniversal gap-3">
-          <div>
-            <div className="flexDirectionUniversal gap-3 lg:gap-10">
-              <div className="flex items-center gap-2 ">
-                <Package
-                  size={32}
-                  className="bg-base-text fill-base-white rounded-full p-2"
-                />
-                <span className="text-base-text font-Roboto font-normal text-base">
-                  Embalagem mantém o café intacto
-                </span>
-              </div>
+        <div className="flexDirectionUniversal gap-5">
+          <div className="flexDirectionUniversal gap-3 lg:gap-3">
+            <div className="flex items-center gap-2 ">
+              <Package
+                size={32}
+                className="bg-base-text fill-base-white rounded-full p-2"
+              />
+              <span className="text-base-text font-Roboto font-normal text-base">
+                Embalagem mantém o café intacto
+              </span>
+            </div>
 
-              <div className="flex items-center gap-2 ">
-                <Coffee
-                  size={32}
-                  className="bg-purple fill-base-white rounded-full p-2"
-                />
-                <span className="text-base-text font-Roboto font-normal text-base">
-                  O café chega fresquinho até você
-                </span>
-              </div>
+            <div className="flex items-center gap-2 ">
+              <Coffee
+                size={32}
+                className="bg-purple fill-base-white rounded-full p-2"
+              />
+              <span className="text-base-text font-Roboto font-normal text-base">
+                O café chega fresquinho até você
+              </span>
             </div>
           </div>
 
-          <div className="flexDirectionUniversal gap-3 lg:gap-10">
+          <div className="flexDirectionUniversal gap-3 lg:gap-3">
             <div className="flex items-center gap-2 ">
               <ShoppingCart
                 size={32}
@@ -62,7 +60,7 @@ function FirstSection() {
         </div>
       </div>
 
-      <div className="w-4/5">
+      <div className="lg:w-1/2">
         <img src={CoffeImage} alt="Imagem de copo de café" />
       </div>
     </section>
