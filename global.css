@@ -11,3 +11,36 @@
 .font-baloo {
   font-family: "Baloo 2", sans-serif;
 }
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
+form input {
+  border-radius: 8px;
+  color: #8d8686;
+  background-color: #ededed;
+  padding: 10px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  border: 2px solid #e6e5e5;
+}
+.gradient-border {
+  position: relative;
+  border-radius: 8px 80px 8px 80px; /* Arredondamento aplicado */
+  overflow: hidden; /* Garante que o gradiente siga as bordas arredondadas */
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 8px 60px 8px 60px; /* Mesmo arredondamento */
+  padding: 4px; /* Espessura da borda */
+  background: linear-gradient(90deg, #dbac2c, #8047f8); /* Gradiente */
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); /* Máscara para fazer a borda */
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1; /* Fica atrás do conteúdo */
+}

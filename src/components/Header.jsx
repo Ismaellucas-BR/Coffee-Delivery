@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from "/assets/Logo.png";
 import { MapPin, ShoppingCart } from "@phosphor-icons/react";
+import Cart from "./Cart";
 
 function Header() {
   return (
@@ -16,9 +17,7 @@ function Header() {
               Recife - <span>PE</span>
             </span>
           </div>
-          <div className="flex items-center bg-yellow-light text-yellow rounded-md p-2">
-            <ShoppingCart size={32} />
-          </div>
+          <Cart />
         </div>
       </section>
     </header>
