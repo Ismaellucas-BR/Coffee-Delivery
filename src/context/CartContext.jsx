@@ -1,12 +1,22 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-// Cria o contexto
 const CartContext = createContext();
 
-// Provedor do contexto
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
+  const [formData, setFormData] = useState({
+    cep: "",
+    rua: "",
+    numero: "",
+    complemento: "",
+    bairro: "",
+    cidade: "",
+    uf: "",
+  });
   const [paymentMethod, setPaymentMethod] = useState("");
+
+  const navigate = useNavigate(); // Use o hook useNavigate aqui
 
   function addToCart(item, quantity, total) {
     setCartItems((prevItems) => {
@@ -14,7 +24,6 @@ export function CartProvider({ children }) {
         (cartItem) => cartItem.name === item.name
       );
       if (existingItem) {
-        // Atualiza a quantidade e o total do item existente
         return prevItems.map((cartItem) =>
           cartItem.name === item.name
             ? {
@@ -25,7 +34,6 @@ export function CartProvider({ children }) {
             : cartItem
         );
       } else {
-        // Adiciona um novo item ao carrinho
         return [...prevItems, { ...item, quantity, total }];
       }
     });
@@ -44,7 +52,7 @@ export function CartProvider({ children }) {
           ? {
               ...cartItem,
               quantity: cartItem.quantity + 1,
-              total: cartItem.total + cartItem.price, // Atualiza o total
+              total: cartItem.total + cartItem.price,
             }
           : cartItem
       )
@@ -58,23 +66,30 @@ export function CartProvider({ children }) {
           ? {
               ...cartItem,
               quantity: cartItem.quantity - 1,
-              total: cartItem.total - cartItem.price, // Atualiza o total
+              total: cartItem.total - cartItem.price,
             }
           : cartItem
       )
     );
   }
 
-  // Calcula o total do carrinho
   const cartTotal = cartItems.reduce((total, item) => total + item.total, 0);
 
   function setPayment(payment) {
     setPaymentMethod(payment);
   }
+
   function handleButtonClick(event, method) {
-    event.preventDefault(); // Impede o comportamento padrão
+    event.preventDefault();
     setPayment(method);
   }
+
+  function submitForm(data) {
+    setFormData(data);
+    console.log("Dados enviados:", formData);
+    navigate("/order_confirmed"); // Use navigate aqui para redirecionar
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -84,6 +99,9 @@ export function CartProvider({ children }) {
         increaseQuantity,
         decreaseQuantity,
         cartTotal,
+        setPayment,
+        handleButtonClick,
+        submitForm,
       }}
     >
       {children}
@@ -91,7 +109,6 @@ export function CartProvider({ children }) {
   );
 }
 
-// Hook para usar o contexto
 export function useCart() {
   return useContext(CartContext);
 }

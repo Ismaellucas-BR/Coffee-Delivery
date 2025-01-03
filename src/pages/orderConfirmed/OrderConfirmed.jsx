@@ -1,8 +1,13 @@
 import illustration from "../../../public/assets/illustration.png";
+import { useCart } from "../../context/CartContext";
 import { MapPin, Timer, DollarSign } from "lucide-react";
 import React from "react";
 
 function OrderConfirmed() {
+  const { formData, paymentMethod } = useCart();
+  console.log("====================================");
+  console.log(formData);
+  console.log("====================================");
   return (
     <main className="pt-10">
       <h2 className="font-baloo text-yellow-dark text-3xl font-bold">
@@ -20,10 +25,13 @@ function OrderConfirmed() {
             />
             <div className="flex flex-col">
               <span>
-                Entrega em <span className="font-semibold">rua</span>
+                Entrega em <span className="font-semibold">{formData.rua}</span>
               </span>
               <span>
-                bairro - <span>Cidade e UF</span>
+                {formData.bairro} -{" "}
+                <span>
+                  {formData.cidade} - {formData.uf}
+                </span>
               </span>
             </div>
           </div>
@@ -44,7 +52,7 @@ function OrderConfirmed() {
             />
             <div className="flex flex-col">
               <span>Pagamento na entrega</span>
-              <span className="font-semibold">20 min - 30 min</span>
+              <span className="font-semibold">{paymentMethod}</span>
             </div>
           </div>
         </div>

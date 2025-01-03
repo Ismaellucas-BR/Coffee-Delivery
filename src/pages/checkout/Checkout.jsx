@@ -8,6 +8,8 @@ import {
 } from "@phosphor-icons/react";
 import React from "react";
 import { useCart } from "../../context/CartContext";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 function Checkout() {
   const {
     cartItems,
@@ -16,9 +18,40 @@ function Checkout() {
     decreaseQuantity,
     removeFromCart,
     paymentMethod,
+    submitForm,
   } = useCart();
+
+  const [formData, setFormData] = useState({
+    cep: "",
+    rua: "",
+    numero: "",
+    complemento: "",
+    bairro: "",
+    cidade: "",
+    uf: "",
+  });
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  }
+  const navigate = useNavigate();
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (formData.cep && formData.rua && formData.numero) {
+      // Verifica campos obrigatórios
+      submitForm(formData); // Submete os dados do formulário
+      navigate("/order_confimed"); // Redireciona para a página de confirmação
+    } else {
+      alert("Por favor, preencha todos os campos obrigatórios!");
+    }
+  }
+  console.log("Dados do formulário enviados:", formData);
+
   return (
-    <form className="flex justify-center items-start gap-5 w-full">
+    <form
+      onSubmit={handleSubmit}
+      className="flex justify-center items-start gap-10 w-full pt-10 pb-20"
+    >
       <div className="flex flex-col gap-5 w-3/5">
         <h2 className="font-baloo text-xl font-bold">Complete seu pedido</h2>
         {/*address zone start*/}
@@ -47,25 +80,37 @@ function Checkout() {
           <div className="flex flex-col gap-3">
             <input
               type="text"
+              name="cep"
               className="inputForm w-[12.5rem]"
               placeholder="CEP"
+              value={formData.cep}
+              onChange={handleChange}
             />
             <input
               type="text"
               className="inputForm w-[35rem]"
+              name="rua"
               placeholder="Rua"
+              value={formData.rua}
+              onChange={handleChange}
             />
             <div className="divInputForm flex gap-3">
               <input
                 type="text"
                 className="inputForm w-[12.5rem]"
                 placeholder="Número"
+                name="numero"
+                value={formData.numero}
+                onChange={handleChange}
               />
               <div className="relative">
                 <input
                   type="text"
                   className="inputForm w-[21.75rem]"
                   placeholder="Complemento"
+                  name="complemento"
+                  value={formData.complemento}
+                  onChange={handleChange}
                 />
 
                 <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm pointer-events-none">
@@ -78,16 +123,25 @@ function Checkout() {
                 type="text"
                 className="inputForm w-[12.5rem]"
                 placeholder="Bairro"
+                name="bairro"
+                value={formData.bairro}
+                onChange={handleChange}
               />
               <input
                 type="text"
                 className="inputForm w-[17.25rem]"
                 placeholder="Cidade"
+                name="cidade"
+                value={formData.cidade}
+                onChange={handleChange}
               />
               <input
                 type="text"
                 className="inputForm w-[3.75rem]"
                 placeholder="UF"
+                name="uf"
+                value={formData.uf}
+                onChange={handleChange}
               />
             </div>
           </div>
